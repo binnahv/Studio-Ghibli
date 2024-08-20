@@ -4,12 +4,24 @@
   padding: 20px;
 }
 
-#filmes {
-  list-style: none;
-  padding: 0;
+.films-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.filme {
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
+.film-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.film-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
