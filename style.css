@@ -4,15 +4,10 @@ body {
   background-attachment: fixed;
 }
 
-h1{
+h1 {
   font-family: "Amatic SC", sans-serif;
   font-weight: 1000;
   font-style: normal;
-}
-
-.nome{
-  font-family: "Gochi Hand", cursive;
-  text-align: left;
 }
 
 /* Logo */
@@ -24,17 +19,16 @@ h1{
 }
 
 #logo {
-  width: 250px; /* Largura da logo */
+  width: 250px;
   height: auto; 
   max-width: 100%; 
 }
 
-/* fundo */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.5); 
+  background: rgba(255, 255, 255, 0.0); 
   border-radius: 10px;
   margin-top: 80px; 
   text-align: center;
@@ -51,9 +45,9 @@ h1{
   padding: 20px;
   margin: 10px;
   width: 250px;
-  text-align: center;
+  text-align: left; /* Alinhamento à esquerda */
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.3); /* Cor de fundo da caixinha*/
+  background: rgba(255, 255, 255, 0.5);
   color: #000;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -62,16 +56,41 @@ h1{
   width: 100%;
   height: auto;
   border-radius: 5px;
+  margin-bottom: 10px; 
 }
 
-/* Efeito do mouse */
+.film-card h5 {
+  margin-bottom: 10px; 
+}
+
+.film-card p {
+  margin-bottom: 5px; 
+}
+
 .film-card:hover {
   background-color: #fff; 
   color: #000; 
   border-color: #ddd; 
 }
 
-/* Pesquisa */
+/* Botões no Card */
+.card-icons {
+  margin-top: 10px;
+}
+
+.card-icons .bi {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.card-icons .bi:hover {
+  color: #fff; 
+  background-color: #007bff;
+  border-radius: 50%; 
+  padding: 5px;
+}
 
 .search-bar {
   display: flex;
@@ -95,11 +114,29 @@ h1{
   border-bottom-left-radius: 0;
 }
 
-
-
-/* Filtros */
-.filters {
-  max-width: 500px;  /* Falta Centralizar!!!*/
-  margin: 0 auto;
+@media (min-width: 768px) {
+  .films-list {
+      justify-content: space-between;
+  }
+  
+  /* Fileirinha de 3 filmes */
+  .film-card {
+      width: 30%; 
+  }
 }
 
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.0); 
+    border-radius: 10px;
+    margin-top: 80px; 
+    text-align: center;
+  }
+  
+  .film-card {
+    width: 30%; 
+  }
+}
