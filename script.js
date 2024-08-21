@@ -3,6 +3,8 @@ const filmsList = document.querySelector('.films-list');
 const searchInput = document.getElementById('search');
 const filtersContainer = document.querySelector('.filters');
 const filmModal = new bootstrap.Modal(document.getElementById('filmModal'));
+//teste
+
 
 let films = [];
 
@@ -30,9 +32,8 @@ function renderFilms(filmsData) {
     filmCard.innerHTML = `
       <img src="${film.image}" alt="${film.title}">
       <h5>${film.title}</h5>
-      <p>${film.director}</p>
-      <p>${film.release_date}</p>
-      <p>${film.description}</p>
+      <p><strong>Diretor:</strong> ${film.director}</p>
+      <p><strong>Ano:</strong> ${film.release_date}</p>
     `;
     filmCard.addEventListener('click', () => showFilmDetails(film));
     filmsList.appendChild(filmCard);
@@ -93,3 +94,25 @@ searchInput.addEventListener('input', () => {
 
 // Chamar a função para buscar os filmes ao carregar a página
 fetchFilms();
+
+
+
+
+const searchButton = document.getElementById('search-button');
+
+// Função para buscar os filmes quando pressionar Enter ou clicar no botão
+function triggerSearch() {
+    const searchTerm = searchInput.value;
+    searchFilms(searchTerm);
+}
+
+// Event listener para o botão de pesquisa
+searchButton.addEventListener('click', triggerSearch);
+
+// Event listener para pressionar Enter no campo de busca
+searchInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Evita o comportamento padrão do Enter
+        triggerSearch();
+    }
+});

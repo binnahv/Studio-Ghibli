@@ -1,7 +1,43 @@
+body {
+  background-image: url('Fundo.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1{
+  font-family: "Amatic SC", sans-serif;
+  font-weight: 1000;
+  font-style: normal;
+}
+
+.nome{
+  font-family: "Gochi Hand", cursive;
+  text-align: left;
+}
+
+/* Logo */
+.logo-container {
+  position: relative;
+  width: 100%; 
+  text-align: center; 
+  margin-top: 10px; 
+}
+
+#logo {
+  width: 250px; /* Largura da logo */
+  height: auto; 
+  max-width: 100%; 
+}
+
+/* fundo */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background: rgba(255, 255, 255, 0.5); 
+  border-radius: 10px;
+  margin-top: 80px; 
+  text-align: center;
 }
 
 .films-list {
@@ -11,13 +47,15 @@
 }
 
 .film-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px;
   margin: 10px;
   width: 250px;
   text-align: center;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.3); /* Cor de fundo da caixinha*/
+  color: #000;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .film-card img {
@@ -25,3 +63,43 @@
   height: auto;
   border-radius: 5px;
 }
+
+/* Efeito do mouse */
+.film-card:hover {
+  background-color: #fff; 
+  color: #000; 
+  border-color: #ddd; 
+}
+
+/* Pesquisa */
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; 
+}
+
+.input-group {
+  display: flex;
+  width: 100%;
+  max-width: 500px; 
+}
+
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+
+/* Filtros */
+.filters {
+  max-width: 500px;  /* Falta Centralizar!!!*/
+  margin: 0 auto;
+}
+
