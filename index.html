@@ -16,14 +16,14 @@
 <body>
     <!-- Logo -->
     <div class="logo-container">
-        <img src="Studio_Ghibli_logo.png" alt="Logo" id="logo">
+        <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Logo" id="logo">
     </div>
     <div class="container">
         <h1>Studio Ghibli</h1>
         <!-- Barra de Pesquisa -->
         <div class="search-bar mb-3">
             <div class="input-group">
-                <input type="text" id="search" class="form-control" placeholder="Pesquise o filme, diretor, produtor, ano ou score">
+                <input type="text" id="search" class="form-control" placeholder="Search for movie, year, director, or score.">
                 <button class="btn btn-primary" id="search-button" type="button">
                     <i class="bi bi-search-heart"></i>
                 </button>
@@ -44,12 +44,13 @@
                 </div>
                 <div class="modal-body">
                     <img id="modalFilmImage" src="" alt="Imagem do Filme" class="img-fluid mb-3">
-                    <p><strong>Diretor:</strong> <span id="modalFilmDirector"></span></p>
-                    <p><strong>Ano:</strong> <span id="modalFilmYear"></span></p>
+                    <p><i class="bi bi-person icon"></i><strong>Diretor:</strong> <span id="modalFilmDirector"></span></p>
+                    <p><i class="bi bi-calendar-check icon"></i><strong>Ano:</strong> <span id="modalFilmYear"></span></p>
+                    <p><i class="bi bi-star icon"></i><strong>Score:</strong> <span id="modalFilmScore"></span></p>
                     <p id="modalFilmDescription"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -58,3 +59,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

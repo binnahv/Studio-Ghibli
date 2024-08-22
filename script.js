@@ -31,14 +31,19 @@ function renderFilms(filmsData) {
             <p><strong>Diretor:</strong> ${film.director}</p>
             <p><strong>Ano:</strong> ${film.release_date}</p>   
             <p><strong>Score:</strong> ${film.rt_score}</p>
-
-            <div class="card-icons">
-                <i class="bi bi-heart"></i>
-                <i class="bi bi-bookmark"></i>
-            </div>
+            <button class="btn btn-primary w-100 mt-2 details-button" data-id="${film.id}">Movie Details</button>
         `;
-        filmCard.addEventListener('click', () => showFilmDetails(film));
         filmsList.appendChild(filmCard);
+    });
+
+    // Adicionar event listener aos botões de detalhes
+    const detailsButtons = document.querySelectorAll('.details-button');
+    detailsButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filmId = this.getAttribute('data-id');
+            const selectedFilm = films.find(film => film.id === filmId);
+            showFilmDetails(selectedFilm);
+        });
     });
 }
 
@@ -60,7 +65,8 @@ function showFilmDetails(film) {
     document.getElementById('modalFilmImage').src = film.image;
     document.getElementById('modalFilmDescription').textContent = film.description;
     document.getElementById('modalFilmDirector').textContent = film.director;
-    document.getElementById('modalFilmYear').textContent = film.release_date.split('-')[0];
+    document.getElementById('modalFilmYear').textContent = film.release_date;
+    document.getElementById('modalFilmScore').textContent = film.rt_score;
 
     filmModal.show();
 }
@@ -70,10 +76,11 @@ searchButton.addEventListener('click', () => {
     searchFilms(searchInput.value);
 });
 
-searchInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        searchFilms(searchInput.value);
+searchInput.addEventListener('input', function() {
+    if (this.value === '') {
+        renderFilms(films); // Retorna à lista original ao apagar o texto
+    } else {
+        searchFilms(this.value);
     }
 });
 

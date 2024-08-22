@@ -1,5 +1,5 @@
 body {
-  background-image: url('Fundo.png');
+  background-image: url('https://images8.alphacoders.com/135/thumb-1920-1354012.png');
   background-size: cover;
   background-attachment: fixed;
 }
@@ -73,23 +73,23 @@ h1 {
   border-color: #ddd; 
 }
 
-/* Botões no Card */
-.card-icons {
+/* Botão Detalhes */
+.details-button {
+  display: block;
+  width: 100%; /* Largura completa do card */
   margin-top: 10px;
-}
-
-.card-icons .bi {
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #007bff;
-  transition: color 0.3s ease;
-}
-
-.card-icons .bi:hover {
-  color: #fff; 
+  padding: 10px;
+  text-align: center;
   background-color: #007bff;
-  border-radius: 50%; 
-  padding: 5px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
 }
 
 .search-bar {
@@ -121,7 +121,7 @@ h1 {
   
   /* Fileirinha de 3 filmes */
   .film-card {
-      width: 30%; 
+      width: 40%; 
   }
 }
 
@@ -137,6 +137,6 @@ h1 {
   }
   
   .film-card {
-    width: 30%; 
+    width: 40%; 
   }
 }
