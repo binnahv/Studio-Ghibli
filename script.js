@@ -20,7 +20,7 @@ async function fetchFilms() {
 
 // Função para renderizar os filmes
 function renderFilms(filmsData) {
-    filmsList.innerHTML = ''; // Limpar a lista antes de renderizar novamente
+    filmsList.innerHTML = '';
 
     filmsData.forEach(film => {
         const filmCard = document.createElement('div');
@@ -36,7 +36,7 @@ function renderFilms(filmsData) {
         filmsList.appendChild(filmCard);
     });
 
-    // Adicionar event listener aos botões de detalhes
+    // Event listener botões de detalhes
     const detailsButtons = document.querySelectorAll('.details-button');
     detailsButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -78,7 +78,7 @@ searchButton.addEventListener('click', () => {
 
 searchInput.addEventListener('input', function() {
     if (this.value === '') {
-        renderFilms(films); // Retorna à lista original ao apagar o texto
+        renderFilms(films);
     } else {
         searchFilms(this.value);
     }
