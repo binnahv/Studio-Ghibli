@@ -17,11 +17,12 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <!-- logo -->
-            <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Logo">
+            <!-- Logo da página -->
+            <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Studio Ghibli Logo">
         </div>
         <div class="login-btn">
-            <button id="loginBtn" value="Login">Login</button>
+            <!-- Botão de Login -->
+            <button id="loginBtn" value="Login" aria-label="Login">Login</button>
         </div>
     </nav>
   
@@ -30,8 +31,8 @@
         <!-- Barra de Pesquisa -->
         <div class="search-bar mb-3">
             <div class="input-group">
-                <input type="text" id="search" class="form-control" placeholder="Search for movie, year, director, or score.">
-                <button class="btn btn-primary" id="search-button" type="button" value="search button">
+                <input type="text" id="search" class="form-control" placeholder="Search for movie, year, director, or score." aria-label="Search">
+                <button class="btn btn-primary" id="search-button" type="button" value="search button" aria-label="Search">
                     <i class="bi bi-search-heart"></i>
                 </button>
             </div>
@@ -52,12 +53,13 @@
                 <div class="modal-body">
                     <img id="modalFilmImage" src="" alt="Imagem do Filme" class="img-fluid mb-3">
                     <p><i class="bi bi-person icon"></i><strong>Director:</strong> <span id="modalFilmDirector"></span></p>
-                    <p><i class="bi bi-calendar-check icon"></p></i><strong>Year:</strong> <span id="modalFilmYear"></span></p>
+                    <p><i class="bi bi-calendar-check icon"></i><strong>Year:</strong> <span id="modalFilmYear"></span></p>
                     <p><i class="bi bi-star icon"></i><strong>Score:</strong> <span id="modalFilmScore"></span></p>
                     <p id="modalFilmDescription"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Close">Close</button>
+                    <!-- Botão de fechar o modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Close" aria-label="Close">Close</button>
                 </div>
             </div>
         </div>
@@ -66,4 +68,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

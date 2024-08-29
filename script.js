@@ -1,92 +1,81 @@
-const apiUrl = 'https://ghibliapi.vercel.app/films';
-const filmsList = document.querySelector('.films-list');
-const searchInput = document.getElementById('search');
-const searchButton = document.getElementById('search-button');
-const filmModal = new bootstrap.Modal(document.getElementById('filmModal'));
-let films = [];
+document.addEventListener("DOMContentLoaded", () => {
+    // Carregar e exibir filmes
+    fetchFilms();
 
-// Função para buscar os filmes da API
+    // Realizar busca em tempo real
+    document.getElementById("search").addEventListener("input", performSearch);
+});
+
+// Buscar filmes da API
 async function fetchFilms() {
     try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        films = data;
-        renderFilms(films);
+        const response = await fetch("https://ghibliapi.vercel.app/films");
+        const films = await response.json();
+        displayFilms(films);
+
+        // Armazenar filmes
+        window.allFilms = films;
     } catch (error) {
-        console.error('Erro ao buscar os filmes:', error);
-        filmsList.innerHTML = '<p>An error occurred while loading the movies. Please try again later.</p>';
+        console.error("Erro ao buscar filmes:", error);
     }
 }
-// Em Manutenção falta Adicionar as funcionalidades de login! <3
-document.getElementById('loginBtn').addEventListener('click', function() {
-    alert('Login button clicked!');
-});
 
-// Função para renderizar os filmes
-function renderFilms(filmsData) {
-    filmsList.innerHTML = '';
+// Exibir os filmes na tela
+function displayFilms(films) {
+    const filmsList = document.querySelector(".films-list");
+    filmsList.innerHTML = ""; // Limpar lista de filmes antes de exibir
 
-    filmsData.forEach(film => {
-        const filmCard = document.createElement('div');
-        filmCard.classList.add('film-card', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3');
+    films.forEach((film) => {
+        const filmCard = document.createElement("div");
+        filmCard.className = "film-card col-12 col-md-4 col-lg-3";
+
         filmCard.innerHTML = `
+            <img src="${film.image}" alt="${film.title} Poster">
             <h5>${film.title}</h5>
-            <img src="${film.image}" alt="${film.title}">
-            <p><strong>Director:</strong> ${film.director}</p>
-            <p><strong>Year:</strong> ${film.release_date}</p>   
-            <p><strong>Score:</strong> ${film.rt_score}</p>
-            <button class="btn btn-primary w-100 mt-2 details-button" value="search button" data-id="${film.id}">Movie Details</button>
+            <p>Director: ${film.director}</p>
+            <p>Year: ${film.release_date}</p>
+            <p>Score: ${film.rt_score}</p>
+            <button class="details-button" aria-label="View details for ${film.title}" data-bs-toggle="modal" data-bs-target="#filmModal" data-film-id="${film.id}">
+                Details
+            </button>
         `;
+
+        // Botão de detalhes
+        filmCard.querySelector(".details-button").addEventListener("click", () => {
+            showFilmDetails(film);
+        });
+
         filmsList.appendChild(filmCard);
     });
-
-    // Event listener botões de detalhes
-    const detailsButtons = document.querySelectorAll('.details-button');
-    detailsButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filmId = this.getAttribute('data-id');
-            const selectedFilm = films.find(film => film.id === filmId);
-            showFilmDetails(selectedFilm);
-        });
-    });
 }
 
-// Função para implementar a busca
-function searchFilms(searchTerm) {
-    const filteredFilms = films.filter(film =>
-        film.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        film.director.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        film.producer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        film.release_date.includes(searchTerm) ||
-        film.rt_score.includes(searchTerm)
-    );
-    renderFilms(filteredFilms);
-}
-
-// Função para mostrar os detalhes do filme em um modal
+// Exibir detalhes do filme no modal
 function showFilmDetails(film) {
-    document.getElementById('filmModalLabel').textContent = film.title;
-    document.getElementById('modalFilmImage').src = film.image;
-    document.getElementById('modalFilmDescription').textContent = film.description;
-    document.getElementById('modalFilmDirector').textContent = film.director;
-    document.getElementById('modalFilmYear').textContent = film.release_date;
-    document.getElementById('modalFilmScore').textContent = film.rt_score;
-
-    filmModal.show();
+    document.getElementById("modalFilmImage").src = film.image;
+    document.getElementById("modalFilmDirector").textContent = film.director;
+    document.getElementById("modalFilmYear").textContent = film.release_date;
+    document.getElementById("modalFilmScore").textContent = film.rt_score;
+    document.getElementById("modalFilmDescription").textContent = film.description;
 }
 
-// Event listeners
-searchButton.addEventListener('click', () => {
-    searchFilms(searchInput.value);
-});
+// Realizar a pesquisa em tempo real
+function performSearch() {
+    const query = document.getElementById("search").value.toLowerCase();
 
-searchInput.addEventListener('input', function() {
-    if (this.value === '') {
-        renderFilms(films);
-    } else {
-        searchFilms(this.value);
+    // Filtrar filmes com base na consulta de pesquisa
+    const filteredFilms = window.allFilms.filter((film) => {
+        return (
+            film.title.toLowerCase().includes(query) ||
+            film.director.toLowerCase().includes(query) ||
+            film.release_date.includes(query) ||
+            film.rt_score.includes(query)
+        );
+    });
+
+    displayFilms(filteredFilms);
+
+    // Se a consulta estiver vazia vai exibir todos os filmes!!
+    if (query === "") {
+        displayFilms(window.allFilms);
     }
-});
-
-// Chamar a função para buscar os filmes ao carregar a página
-fetchFilms();
+}
