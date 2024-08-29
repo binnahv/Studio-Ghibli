@@ -14,9 +14,13 @@ async function fetchFilms() {
         renderFilms(films);
     } catch (error) {
         console.error('Erro ao buscar os filmes:', error);
-        filmsList.innerHTML = '<p>Ocorreu um erro ao carregar os filmes. Tente novamente mais tarde.</p>';
+        filmsList.innerHTML = '<p>An error occurred while loading the movies. Please try again later.</p>';
     }
 }
+// Em Manutenção falta Adicionar as funcionalidades de login! <3
+document.getElementById('loginBtn').addEventListener('click', function() {
+    alert('Login button clicked!');
+});
 
 // Função para renderizar os filmes
 function renderFilms(filmsData) {
@@ -28,8 +32,8 @@ function renderFilms(filmsData) {
         filmCard.innerHTML = `
             <h5>${film.title}</h5>
             <img src="${film.image}" alt="${film.title}">
-            <p><strong>Diretor:</strong> ${film.director}</p>
-            <p><strong>Ano:</strong> ${film.release_date}</p>   
+            <p><strong>Director:</strong> ${film.director}</p>
+            <p><strong>Year:</strong> ${film.release_date}</p>   
             <p><strong>Score:</strong> ${film.rt_score}</p>
             <button class="btn btn-primary w-100 mt-2 details-button" data-id="${film.id}">Movie Details</button>
         `;

@@ -10,19 +10,36 @@ h1 {
   font-style: normal;
 }
 
-/* Logo */
-.logo-container {
-  position: relative;
-  width: 100%; 
-  text-align: center; 
-  margin-top: 10px; 
+/* Barra de navegação */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.0);
+  padding: 10px 20px;
+  color: white;
 }
 
-#logo {
-  width: 250px;
-  height: auto; 
-  max-width: 100%; 
+/* Logo */
+.logo img {
+  height: 70px;
 }
+
+/* Botão de login */
+.login-btn button {
+  background-color:  #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+/* Botão de login efeito*/
+.login-btn button:hover {
+  background-color: #0056b3;
+}
+
 
 .container {
   max-width: 800px;
@@ -40,6 +57,7 @@ h1 {
   justify-content: center;
 }
 
+/*Cartões*/
 .film-card {
   border-radius: 10px;
   padding: 20px;
@@ -92,6 +110,7 @@ h1 {
   background-color: #0056b3;
 }
 
+/* Caixinha de pesquisa */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -116,27 +135,5 @@ h1 {
 
 @media (min-width: 768px) {
   .films-list {
-      justify-content: space-between;
-  }
-  
-  /* Fileirinha de filmes */
-  .film-card {
-      width: 40%; 
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.0); 
-    border-radius: 10px;
-    margin-top: 80px; 
-    text-align: center;
-  }
-  
-  .film-card {
-    width: 40%; 
-  }
+      justify-content: space-between;}
 }

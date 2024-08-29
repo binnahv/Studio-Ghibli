@@ -12,12 +12,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gloria+Hallelujah&family=Gochi+Hand&family=Lora:ital,wght@0,400..700;1,400..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <meta name="description" content="Author: Sabrina Vidal, Este repositório contém uma aplicação web simples que consome dados de uma API pública para exibir informações sobre filmes do Studio Ghibli. O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript** e **Bootstrap**.">
 </head>
 <body>
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Logo" id="logo">
-    </div>
+    <nav class="navbar">
+        <div class="logo">
+            <!-- logo -->
+            <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Logo">
+        </div>
+        <div class="login-btn">
+            <button id="loginBtn">Login</button>
+        </div>
+    </nav>
+  
     <div class="container">
         <h1>Studio Ghibli</h1>
         <!-- Barra de Pesquisa -->
@@ -44,8 +51,8 @@
                 </div>
                 <div class="modal-body">
                     <img id="modalFilmImage" src="" alt="Imagem do Filme" class="img-fluid mb-3">
-                    <p><i class="bi bi-person icon"></i><strong>Diretor:</strong> <span id="modalFilmDirector"></span></p>
-                    <p><i class="bi bi-calendar-check icon"></i><strong>Ano:</strong> <span id="modalFilmYear"></span></p>
+                    <p><i class="bi bi-person icon"></i><strong>Director:</strong> <span id="modalFilmDirector"></span></p>
+                    <p><i class="bi bi-calendar-check icon"></p></i><strong>Year:</strong> <span id="modalFilmYear"></span></p>
                     <p><i class="bi bi-star icon"></i><strong>Score:</strong> <span id="modalFilmScore"></span></p>
                     <p id="modalFilmDescription"></p>
                 </div>
