@@ -35,7 +35,7 @@ function renderFilms(filmsData) {
             <p><strong>Director:</strong> ${film.director}</p>
             <p><strong>Year:</strong> ${film.release_date}</p>   
             <p><strong>Score:</strong> ${film.rt_score}</p>
-            <button class="btn btn-primary w-100 mt-2 details-button" data-id="${film.id}">Movie Details</button>
+            <button class="btn btn-primary w-100 mt-2 details-button" value="search button" data-id="${film.id}">Movie Details</button>
         `;
         filmsList.appendChild(filmCard);
     });
