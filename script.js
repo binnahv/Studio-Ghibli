@@ -31,7 +31,7 @@ function displayFilms(films) {
 
         filmCard.innerHTML = `
             <img src="${film.image}" alt="${film.title} Poster">
-            <h5>${film.title}</h5>
+            <h2>${film.title}</h2>
             <p>Director: ${film.director}</p>
             <p>Year: ${film.release_date}</p>
             <p>Score: ${film.rt_score}</p>
