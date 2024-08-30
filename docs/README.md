@@ -14,7 +14,7 @@ Este repositório contém uma aplicação web simples que consome dados de uma A
 
 ## 🎨 Recursos Utilizados
 - **Logo do Studio Ghibli:** [Link para a imagem](https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg)
-- **Imagem de fundo:** [Link para a imagem](https://images8.alphacoders.com/135/thumb-1920-1354012.png)
+- **Imagem de fundo:** [Link para a imagem](https://www.ghibli.jp/images/omohide1.jpg)
 
 ##  O que estou aprendendo atualmente
 Atualmente, estou aprofundando meus conhecimentos em **APIs RESTful** e **frameworks de front-end** como React.js para criar aplicações mais dinâmicas e escaláveis.
