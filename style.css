@@ -15,6 +15,7 @@ h1 {
   font-family: "Amatic SC", sans-serif;
   font-weight: 1000;
   font-style: normal;
+  color: #6660E0;
 }
 
 /* Barra de navegação */
@@ -60,7 +61,7 @@ h1 {
   max-width: 1200px; /* Ajustado para centralizar o conteúdo */
   margin: 20px auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.0);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   text-align: center;
 }
@@ -79,7 +80,7 @@ h1 {
   padding: 20px;
   margin: 15px;
   width: 100%;
-  max-width: 300px; /* Aumenta a largura máxima do card */
+  max-width: 350px; /* Aumenta a largura máxima do card */
   text-align: left;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.8);
@@ -92,7 +93,7 @@ h1 {
 .film-card img {
   width: 100%;
   height: auto;
-  max-height: 200px; /* Aumenta a altura máxima da imagem */
+  max-height: 250px; /* Aumenta a altura máxima da imagem */
   object-fit: cover; /* Mantém a proporção e cobre a área disponível */
   border-radius: 5px;
   margin-bottom: 10px;
@@ -162,16 +163,16 @@ h1 {
 /* Media query responsividade */
 @media (min-width: 768px) {
   .films-list {
-    justify-content: space-between;
+      justify-content: space-between;
   }
 }
 
 @media (max-width: 767px) {
   .film-card {
-    max-width: 90%;
+      max-width: 90%;
   }
 
   .film-card img {
-    max-height: 150px; /* Ajusta a altura da imagem em telas menores */
+      max-height: 150px; /* Ajusta a altura da imagem em telas menores */
   }
 }
