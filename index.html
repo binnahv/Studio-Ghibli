@@ -9,26 +9,26 @@
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gloria+Hallelujah&family=Gochi+Hand&family=Lora:ital,wght@0,400..700;1,400..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <meta name="description" content="Author: Sabrina Vidal, Este repositório contém uma aplicação web simples que consome dados de uma API pública para exibir informações sobre filmes do Studio Ghibli. O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript** e **Bootstrap**.">
+    <meta name="description" content="Author: Sabrina Vidal, Este repositório contém uma aplicação web simples que consome dados de uma API pública para exibir informações sobre filmes do Studio Ghibli. O projeto foi desenvolvido utilizando HTML, CSS, JavaScript e Bootstrap.">
+    <!-- Cache -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000, must-revalidate">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <!-- Logo da página -->
             <img src="https://cdn.worldvectorlogo.com/logos/studio-ghibli-logo.svg" alt="Studio Ghibli Logo">
         </div>
         <div class="login-btn">
-            <!-- Botão de Login -->
             <button id="loginBtn" value="Login" aria-label="Login">Login</button>
         </div>
     </nav>
   
     <div class="container">
         <h1>Studio Ghibli</h1>
-        <!-- Barra de Pesquisa -->
         <div class="search-bar mb-3">
             <div class="input-group">
                 <input type="text" id="search" class="form-control" placeholder="Search for movie, year, director, or score." aria-label="Search">
@@ -37,12 +37,10 @@
                 </button>
             </div>
         </div>
-        <!-- Lista de Filmes -->
         <div class="films-list row">
             <!-- Filmes renderizados-->
         </div>
     </div>
-    <!-- Modal Detalhes do Filme -->
     <div class="modal fade" id="filmModal" tabindex="-1" aria-labelledby="filmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -58,7 +56,6 @@
                     <p id="modalFilmDescription"></p>
                 </div>
                 <div class="modal-footer">
-                    <!-- Botão de fechar o modal -->
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Close" aria-label="Close">Close</button>
                 </div>
             </div>
