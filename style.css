@@ -149,8 +149,8 @@ h1 {
 }
 
 /* Media query responsividade!!! */
-@media (min-width: 768px) {
-  .films-list {
-      justify-content: space-between;
+@media (max-width: 576px) {
+  .navbar {
+      flex-direction: column;
   }
 }
