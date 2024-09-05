@@ -61,7 +61,7 @@ h1 {
   max-width: 1200px; /* Ajustado para centralizar o conteúdo */
   margin: 20px auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.0);
   border-radius: 10px;
   text-align: center;
 }
