@@ -13,6 +13,20 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <meta name="description" content="Author: Sabrina Vidal, Este repositório contém uma aplicação web simples que consome dados de uma API pública para exibir informações sobre filmes do Studio Ghibli. O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript** e **Bootstrap**.">
+
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("service-worker.js")
+            .then(registration => {
+              console.log("Service Worker registrado com sucesso:", registration);
+            })
+            .catch(error => {
+              console.log("Falha ao registrar o Service Worker:", error);
+            });
+        }
+      </script>
+
 </head>
 <body>
     <nav class="navbar">
