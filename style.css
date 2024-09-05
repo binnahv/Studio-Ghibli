@@ -1,13 +1,10 @@
 body {
-
   background-image: url('https://www.ghibli.jp/images/omohide1.jpg');
   background-size: cover;
   background-attachment: fixed;
 }
 
 h1 {
-
-
   font-family: "Amatic SC", sans-serif;
   font-weight: 1000;
   font-style: normal;
@@ -152,8 +149,8 @@ h1 {
 }
 
 /* Media query responsividade!!! */
-@media (max-width: 576px) {
-  .navbar {
-      flex-direction: column;
+@media (min-width: 768px) {
+  .films-list {
+      justify-content: space-between;
   }
 }
