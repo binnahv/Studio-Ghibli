@@ -2,6 +2,13 @@ body {
   background-image: url('https://www.ghibli.jp/images/omohide1.jpg');
   background-size: cover;
   background-attachment: fixed;
+  font-family: 'Montserrat', sans-serif; /* Atualizar a fonte aqui */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1 {
@@ -18,47 +25,43 @@ h1 {
   background: rgba(255, 255, 255, 0.0);
   padding: 10px 20px;
   color: white;
+  width: 100%;
+  max-width: 1200px;
 }
 
-/* Logo */
 .logo img {
   height: 80px;
   min-width: 150px;
 }
 
-/* Botão de login */
 .login-btn button {
-  background-color:  #007bff;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
   border-radius: 4px;
-  /* Melhorar a acessibilidade */
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
-.login-btn button:focus, 
-.details-button:focus, 
+.login-btn button:focus,
+.details-button:focus,
 .btn:focus {
   outline: 2px solid rgba(255, 255, 255, 0.0);
 }
 
-/* Botão de login efeito */
 .login-btn button:hover {
   background-color: #0056b3;
 }
 
-
 .container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1200px; /* Ajustado para centralizar o conteúdo */
+  margin: 20px auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.0); 
+  background: rgba(255, 255, 255, 0.0);
   border-radius: 10px;
-  margin-top: 80px; 
   text-align: center;
 }
 
@@ -70,44 +73,53 @@ h1 {
 
 /* Cartões */
 .film-card {
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   padding: 20px;
-  margin: 10px;
+  margin: 15px;
   width: 100%;
-  max-width: 250px; 
+  max-width: 300px; /* Aumenta a largura máxima do card */
   text-align: left;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   color: #000;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra para destaque */
+  position: relative; /* Necessário para posicionar o botão fixo */
 }
 
 .film-card img {
   width: 100%;
   height: auto;
+  max-height: 200px; /* Aumenta a altura máxima da imagem */
+  object-fit: cover; /* Mantém a proporção e cobre a área disponível */
   border-radius: 5px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
-.film-card h5 {
-  margin-bottom: 10px; 
+.film-card h4 {
+  margin-bottom: 10px;
 }
 
 .film-card p {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .film-card:hover {
-  background-color: #fff; 
-  color: #000; 
-  border-color: #ddd; 
+  background-color: #fff;
+  color: #000;
+  border-color: #ddd;
 }
 
 /* Botão Detalhes */
 .details-button {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
+  position: absolute; /* Fixa o botão na parte inferior do card */
+  bottom: 10px; /* Espaço do fundo do card */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px); /* Considera a margem interna do card */
+  margin-top: auto; /* Empurra o botão para a parte inferior */
   padding: 10px;
   text-align: center;
   background-color: #007bff;
@@ -116,7 +128,6 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  /* Melhorar a acessibilidade*/
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
@@ -129,13 +140,13 @@ h1 {
 .search-bar {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .input-group {
   display: flex;
   width: 100%;
-  max-width: 500px; 
+  max-width: 500px;
 }
 
 .input-group .form-control {
@@ -148,9 +159,19 @@ h1 {
   border-bottom-left-radius: 0;
 }
 
-/* Media query responsividade!!! */
+/* Media query responsividade */
 @media (min-width: 768px) {
   .films-list {
-      justify-content: space-between;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .film-card {
+    max-width: 90%;
+  }
+
+  .film-card img {
+    max-height: 150px; /* Ajusta a altura da imagem em telas menores */
   }
 }

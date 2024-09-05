@@ -30,7 +30,7 @@ function displayFilms(films) {
         filmCard.className = "film-card col-12 col-md-4 col-lg-3";
 
         filmCard.innerHTML = `
-            <img src="${film.image}" alt="${film.title} Poster">
+            <img src="${film.image || 'fallback-image.jpg'}" alt="${film.title} Poster" class="film-image">
             <h4>${film.title}</h4>
             <p>Director: ${film.director}</p>
             <p>Year: ${film.release_date}</p>
@@ -51,7 +51,7 @@ function displayFilms(films) {
 
 // Exibir detalhes do filme no modal
 function showFilmDetails(film) {
-    document.getElementById("modalFilmImage").src = film.image;
+    document.getElementById("modalFilmImage").src = film.image || 'fallback-image.jpg';
     document.getElementById("modalFilmDirector").textContent = film.director;
     document.getElementById("modalFilmYear").textContent = film.release_date;
     document.getElementById("modalFilmScore").textContent = film.rt_score;
