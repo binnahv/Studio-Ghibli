@@ -1,11 +1,9 @@
 // js/filmService.js
 // Serviço para buscar filmes da API
+import { API_BASE } from './config.js';
+
 export async function fetchFilms() {
-  try {
-    const response = await fetch('https://ghibliapi.vercel.app/films');
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  } catch (err) {
-    throw new Error('Erro ao buscar filmes: ' + err.message);
-  }
+  const response = await fetch(`${API_BASE}/films`);
+  if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+  return response.json();
 }
