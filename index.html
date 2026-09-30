@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio Ghibli | Filmes</title>
-  <meta name="description" content="Explore os filmes do Studio Ghibli: busque por título, diretor, ano ou nota.">
+  <title>Studio Ghibli | Films</title>
+  <meta name="description" content="Explore Studio Ghibli films: search by title, director, year, or score.">
   <meta name="theme-color" content="#4a7fb5">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="img/icon-192.png">
@@ -18,52 +18,107 @@
 <body>
   <header class="hero" id="hero">
     <h1>Studio Ghibli</h1>
-    <p>Explorando a API do estúdio</p>
+    <p>Exploring the Studio API</p>
   </header>
 
   <main class="container">
     <div class="search-bar mb-2">
       <div class="input-group">
-        <select id="search-field" class="form-select search-field" aria-label="Buscar por">
-          <option value="title" selected>Título</option>
-          <option value="director">Diretor</option>
-          <option value="year">Ano</option>
-          <option value="score">Nota</option>
+        <select id="search-field" class="form-select search-field" aria-label="Search by">
+          <option value="title" selected>Title</option>
+          <option value="director">Director</option>
+          <option value="year">Year</option>
+          <option value="score">Score</option>
         </select>
-        <input type="text" id="search" class="form-control" placeholder="Ex.: Totoro" aria-label="Buscar filmes">
-        <button class="btn btn-primary" id="search-button" type="button" aria-label="Buscar">
+
+        <input
+          type="text"
+          id="search"
+          class="form-control"
+          placeholder="E.g.: Totoro"
+          aria-label="Search films"
+        >
+
+        <button
+          class="btn btn-primary"
+          id="search-button"
+          type="button"
+          aria-label="Search"
+        >
           <i class="bi bi-search-heart"></i>
         </button>
       </div>
     </div>
+
     <p id="results-info" class="results-info" aria-live="polite"></p>
+
     <div id="spinner" class="d-flex justify-content-center my-5 d-none">
-      <div class="spinner-border" role="status" aria-label="Carregando"></div>
+      <div class="spinner-border" role="status" aria-label="Loading"></div>
     </div>
+
     <div id="error" class="alert alert-danger d-none" role="alert">
-      Não foi possível carregar os filmes. Verifique sua conexão e tente novamente.
+      Unable to load the films. Please check your connection and try again.
     </div>
+
     <div class="films-list row g-4"></div>
-    <nav id="pagination" class="mt-4" aria-label="Paginação dos filmes"></nav>
+
+    <nav id="pagination" class="mt-4" aria-label="Film pagination"></nav>
   </main>
 
   <div class="modal fade" id="filmModal" tabindex="-1" aria-labelledby="filmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+
         <div class="modal-header">
-          <h5 class="modal-title" id="filmModalLabel">Detalhes do filme</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          <h5 class="modal-title" id="filmModalLabel">Film Details</h5>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
+
         <div class="modal-body">
-          <img id="modalFilmImage" src="img/fallback.svg" alt="" class="img-fluid mb-3">
-          <p><i class="bi bi-person icon"></i> <strong>Diretor:</strong> <span id="modalFilmDirector"></span></p>
-          <p><i class="bi bi-calendar-check icon"></i> <strong>Ano:</strong> <span id="modalFilmYear"></span></p>
-          <p><i class="bi bi-star icon"></i> <strong>Rotten Tomatoes:</strong> <span id="modalFilmScore"></span></p>
+          <img
+            id="modalFilmImage"
+            src="img/fallback.svg"
+            alt=""
+            class="img-fluid mb-3"
+          >
+
+          <p>
+            <i class="bi bi-person icon"></i>
+            <strong>Director:</strong>
+            <span id="modalFilmDirector"></span>
+          </p>
+
+          <p>
+            <i class="bi bi-calendar-check icon"></i>
+            <strong>Year:</strong>
+            <span id="modalFilmYear"></span>
+          </p>
+
+          <p>
+            <i class="bi bi-star icon"></i>
+            <strong>Rotten Tomatoes:</strong>
+            <span id="modalFilmScore"></span>
+          </p>
+
           <p id="modalFilmDescription"></p>
         </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
         </div>
+
       </div>
     </div>
   </div>
@@ -72,3 +127,4 @@
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
+
