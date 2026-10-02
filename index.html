@@ -17,38 +17,75 @@
 </head>
 <body>
   <header class="hero" id="hero">
+
+  <nav class="navbar">
+    <a href="#" class="logo">Studio Ghibli</a>
+
+    <div class="nav-links">
+
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
     <h1>Studio Ghibli</h1>
     <p>Exploring the Studio API</p>
-  </header>
+  </div>
+
+</header>
 
   <main class="container">
-    <div class="search-bar mb-2">
-      <div class="input-group">
-        <select id="search-field" class="form-select search-field" aria-label="Search by">
-          <option value="title" selected>Title</option>
-          <option value="director">Director</option>
-          <option value="year">Year</option>
-          <option value="score">Score</option>
-        </select>
+<div class="search-bar mb-2">
 
-        <input
-          type="text"
-          id="search"
-          class="form-control"
-          placeholder="E.g.: Totoro"
-          aria-label="Search films"
-        >
+  <div class="input-group">
 
-        <button
-          class="btn btn-primary"
-          id="search-button"
-          type="button"
-          aria-label="Search"
-        >
-          <i class="bi bi-search-heart"></i>
-        </button>
-      </div>
-    </div>
+    <input
+      type="text"
+      id="search"
+      class="form-control"
+      placeholder="E.g.: Totoro"
+      aria-label="Search films"
+    >
+
+    <button
+      class="btn filter-button"
+      id="filter-button"
+      type="button"
+      aria-label="Search filter"
+      title="Search filter"
+    >
+      <i class="bi bi-funnel"></i>
+    </button>
+
+    <button
+      class="btn btn-primary"
+      id="search-button"
+      type="button"
+      aria-label="Search"
+    >
+      <i class="bi bi-search-heart"></i>
+    </button>
+
+  </div>
+
+  <div class="filter-menu" id="filter-menu">
+
+    <label for="search-field"></label>
+
+    <select
+      id="search-field"
+      class="form-select"
+      aria-label="Search by"
+    >
+      <option value="title" selected>Title</option>
+      <option value="director">Director</option>
+      <option value="year">Year</option>
+      <option value="score">Score</option>
+    </select>
+
+  </div>
+
+</div>
 
     <p id="results-info" class="results-info" aria-live="polite"></p>
 
@@ -127,7 +164,7 @@
   <script type="module" src="js/app.js"></script>
 </body>
 <footer class="footer mt-5">
-  <p><strong>Crédito</strong> © Studio Ghibli</p>
+  <p><strong>© Studio Ghibli</strong></p>
   <p>Projeto de fã, sem fins lucrativos e sem vínculo oficial.</p>
 </footer>
 </html>
