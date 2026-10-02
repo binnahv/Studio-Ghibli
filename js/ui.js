@@ -33,8 +33,8 @@ function createCard(film) {
   title.textContent = film.title;
 
   card.append(img, title);
-
-  [['Director', film.director], ['Year', film.release_date], ['Rotten Tomatoes', `${film.rt_score}%`]]
+Rott
+  [['Director', film.director], ['Year', film.release_date], ['Score', `${film.rt_score}%`]]
 
     .forEach(([label, value]) => {
 
