@@ -2,170 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio Ghibli | Films</title>
-  <meta name="description" content="Explore Studio Ghibli films: search by title, director, year, or score.">
-  <meta name="theme-color" content="#4a7fb5">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ghibli Explorer · Studio Ghibli film catalogue</title>
+  <meta name="description" content="Browse every Studio Ghibli feature film: search by title, director or year, sort by score and keep a list of favourites.">
+  <meta name="theme-color" content="#2f5b86">
+
+  <meta property="og:title" content="Ghibli Explorer">
+  <meta property="og:description" content="Browse, search and favourite Studio Ghibli films.">
+  <meta property="og:type" content="website">
+
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://image.tmdb.org">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <script type="module" src="js/app.js"></script>
 </head>
 <body>
+  <!-- Ícones reutilizáveis: <svg><use href="#i-search"/></svg> -->
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" fill="currentColor"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.2-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#catalogue">Skip to films</a>
+
   <header class="hero" id="hero">
+    <nav class="topbar" aria-label="Main">
+      <a href="./" class="brand">
+        <img src="img/icon-192.png" alt="" width="32" height="32">
+        Ghibli Explorer
+      </a>
+      <a class="topbar__link" href="https://github.com/binnahv/Studio-Ghibli" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+        <span>Source code</span>
+      </a>
+    </nav>
 
-  <nav class="navbar">
-    <a href="#" class="logo">Studio Ghibli</a>
-
-    <div class="nav-links">
-
-      <a href="#about">About</a>
-    </div>
-  </nav>
-
-  <div class="hero-content">
-    <h1>Studio Ghibli</h1>
-    <p>Exploring the Studio API</p>
-  </div>
-
-</header>
-
-  <main class="container">
-<div class="search-bar mb-2">
-
-  <div class="input-group">
-
-    <input
-      type="text"
-      id="search"
-      class="form-control"
-      placeholder="E.g.: Totoro"
-      aria-label="Search films"
-    >
-
-    <button
-      class="btn filter-button"
-      id="filter-button"
-      type="button"
-      aria-label="Search filter"
-      title="Search filter"
-    >
-      <i class="bi bi-funnel"></i>
-    </button>
-
-    <button
-      class="btn btn-primary"
-      id="search-button"
-      type="button"
-      aria-label="Search"
-    >
-      <i class="bi bi-search-heart"></i>
-    </button>
-
-  </div>
-
-  <div class="filter-menu" id="filter-menu">
-
-    <label for="search-field"></label>
-
-    <select
-      id="search-field"
-      class="form-select"
-      aria-label="Search by"
-    >
-      <option value="title" selected>Title</option>
-      <option value="director">Director</option>
-      <option value="year">Year</option>
-      <option value="score">Score</option>
-    </select>
-
-  </div>
-
-</div>
-
-    <p id="results-info" class="results-info" aria-live="polite"></p>
-
-    <div id="spinner" class="d-flex justify-content-center my-5 d-none">
-      <div class="spinner-border" role="status" aria-label="Loading"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Studio Ghibli · 1986 — today</p>
+      <h1 class="hero__title">Find your next<br><em>Ghibli</em> adventure</h1>
+      <p class="hero__lead">Every feature film from the studio, with directors, scores and stories, powered by a public REST API.</p>
+      <p class="hero__credit" id="hero-credit" aria-live="polite"></p>
     </div>
 
-    <div id="error" class="alert alert-danger d-none" role="alert">
-      Unable to load the films. Please check your connection and try again.
-    </div>
+    <svg class="hero__hills" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 80C180 30 320 30 480 64s300 50 480 10 330-60 480-20v66H0Z"/>
+    </svg>
+  </header>
 
-    <div class="films-list row g-4"></div>
+  <main id="catalogue" tabindex="-1">
+    <section class="toolbar" aria-label="Search and filters">
+      <form class="search" role="search" id="search-form">
+        <label class="visually-hidden" for="search">Search films</label>
+        <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="search" name="q" type="search" placeholder="Search by title, e.g. Totoro" autocomplete="off">
+      </form>
 
-    <nav id="pagination" class="mt-4" aria-label="Film pagination"></nav>
-  </main>
+      <div class="toolbar__row">
+        <fieldset class="segmented" id="search-field">
+          <legend class="visually-hidden">Search in</legend>
+          <label><input type="radio" name="field" value="title" checked><span>Title</span></label>
+          <label><input type="radio" name="field" value="director"><span>Director</span></label>
+          <label><input type="radio" name="field" value="year"><span>Year</span></label>
+        </fieldset>
 
-  <div class="modal fade" id="filmModal" tabindex="-1" aria-labelledby="filmModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+        <div class="toolbar__actions">
+          <label class="select">
+            <span class="visually-hidden">Sort by</span>
+            <select id="sort">
+              <option value="year-asc">Oldest first</option>
+              <option value="year-desc">Newest first</option>
+              <option value="score-desc">Best rated</option>
+              <option value="title-asc">A → Z</option>
+            </select>
+          </label>
 
-        <div class="modal-header">
-          <h5 class="modal-title" id="filmModalLabel">Film Details</h5>
-
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <div class="modal-body">
-          <img
-            id="modalFilmImage"
-            src="img/fallback.svg"
-            alt=""
-            class="img-fluid mb-3"
-          >
-
-          <p>
-            <i class="bi bi-person icon"></i>
-            <strong>Director:</strong>
-            <span id="modalFilmDirector"></span>
-          </p>
-
-          <p>
-            <i class="bi bi-calendar-check icon"></i>
-            <strong>Year:</strong>
-            <span id="modalFilmYear"></span>
-          </p>
-
-          <p>
-            <i class="bi bi-star icon"></i>
-            <strong>Score:</strong>
-            <span id="modalFilmScore"></span>
-          </p>
-
-          <p id="modalFilmDescription"></p>
-        </div>
-
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
+          <button type="button" class="chip" id="favorites-toggle" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+            Favourites <span class="chip__count" id="favorites-count">0</span>
           </button>
         </div>
-
       </div>
+    </section>
+
+    <p class="results-info" id="results-info" aria-live="polite"></p>
+
+    <div class="state state--error" id="error" hidden>
+      <p><strong>We couldn't load the films.</strong> Check your connection and try again.</p>
+      <button type="button" class="button" id="retry">Try again</button>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="js/app.js"></script>
+    <div class="state" id="empty" hidden>
+      <p><strong>No films found.</strong> Try another search or clear the filters.</p>
+      <button type="button" class="button button--ghost" id="clear-filters">Clear filters</button>
+    </div>
+
+    <ul class="grid" id="films" aria-busy="true"></ul>
+
+    <nav class="pagination" id="pagination" aria-label="Pages"></nav>
+  </main>
+
+  <dialog class="modal" id="film-modal" aria-labelledby="modal-title">
+    <article class="modal__body">
+      <button type="button" class="modal__close" data-close aria-label="Close">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+
+      <div class="modal__banner">
+        <img id="modal-banner" alt="" decoding="async">
+      </div>
+
+      <div class="modal__content">
+        <img class="modal__poster" id="modal-poster" alt="" decoding="async">
+
+        <div>
+          <p class="modal__original" id="modal-original" lang="ja"></p>
+          <h2 class="modal__title" id="modal-title"></h2>
+          <p class="modal__romanised" id="modal-romanised"></p>
+
+          <dl class="facts">
+            <div><dt>Director</dt><dd id="modal-director"></dd></div>
+            <div><dt>Producer</dt><dd id="modal-producer"></dd></div>
+            <div><dt>Released</dt><dd id="modal-year"></dd></div>
+            <div><dt>Running time</dt><dd id="modal-runtime"></dd></div>
+            <div><dt>Rotten Tomatoes</dt><dd id="modal-score"></dd></div>
+          </dl>
+
+          <p class="modal__description" id="modal-description"></p>
+
+          <button type="button" class="button" id="modal-favorite" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+            <span>Add to favourites</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </dialog>
+
+  <footer class="footer">
+    <p>Built by <a href="https://github.com/binnahv" target="_blank" rel="noopener">binnahv</a> with HTML, CSS and vanilla JavaScript.</p>
+    <p class="footer__note">Data from the <a href="https://ghibliapi.vercel.app" target="_blank" rel="noopener">Studio Ghibli API</a>. Fan project for study purposes, not affiliated with Studio Ghibli. Images © their respective owners.</p>
+  </footer>
 </body>
-<footer class="footer mt-5">
-  <p><strong>© Studio Ghibli</strong></p>
-  <p>Projeto de fã, sem fins lucrativos e sem vínculo oficial.</p>
-</footer>
 </html>
-

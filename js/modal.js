@@ -1,18 +1,59 @@
-// js/modal.js
-// Lógica para exibir detalhes do filme no modal Bootstrap
-import { FALLBACK_IMG } from './config.js';
+// Detalhes do filme num <dialog> nativo: foco preso, Esc fecha e o foco
+// volta ao card de origem sem nenhuma biblioteca.
+import { setImage } from './render.js';
+import { formatRuntime } from './format.js';
 
-export function showFilmDetails(film) {
-  const image = document.getElementById('modalFilmImage');
-  image.src = film.image || FALLBACK_IMG;
-  image.alt = `Pôster de ${film.title}`;
+const dialog = document.getElementById('film-modal');
+const favButton = document.getElementById('modal-favorite');
+const $ = (id) => document.getElementById(id);
 
-  document.getElementById('filmModalLabel').textContent = film.title;
-  document.getElementById('modalFilmDirector').textContent = film.director;
-  document.getElementById('modalFilmYear').textContent = film.release_date;
-  document.getElementById('modalFilmScore').textContent = `${film.rt_score}%`;
-  document.getElementById('modalFilmDescription').textContent = film.description;
+let currentFilm = null;
 
-  // getOrCreateInstance evita criar uma instância nova a cada clique
-  bootstrap.Modal.getOrCreateInstance(document.getElementById('filmModal')).show();
+export function initModal({ onToggleFavorite }) {
+  dialog.addEventListener('click', (event) => {
+    // Clique no backdrop (fora do conteúdo) ou no botão de fechar
+    if (event.target === dialog || event.target.closest('[data-close]')) dialog.close();
+  });
+
+  favButton.addEventListener('click', () => {
+    if (currentFilm) onToggleFavorite(currentFilm);
+  });
+
+  // Evita rolar a página ao fundo enquanto o modal está aberto
+  dialog.addEventListener('close', () => {
+    document.documentElement.style.overflow = '';
+    currentFilm = null;
+  });
+}
+
+export function openModal(film, isFavorite) {
+  currentFilm = film;
+
+  setImage($('modal-banner'), film.movie_banner || film.image);
+  setImage($('modal-poster'), film.image);
+  $('modal-poster').alt = `Poster of ${film.title}`;
+
+  $('modal-title').textContent = film.title;
+  $('modal-original').textContent = film.original_title ?? '';
+  $('modal-romanised').textContent = film.original_title_romanised ?? '';
+  $('modal-director').textContent = film.director;
+  $('modal-producer').textContent = film.producer;
+  $('modal-year').textContent = film.release_date;
+  $('modal-runtime').textContent = formatRuntime(film.running_time);
+  $('modal-score').textContent = `${film.rt_score}%`;
+  $('modal-description').textContent = film.description;
+
+  syncModalFavorite(isFavorite);
+  dialog.querySelector('.modal__body').scrollTop = 0;
+  document.documentElement.style.overflow = 'hidden';
+  dialog.showModal();
+}
+
+export function syncModalFavorite(isFavorite) {
+  favButton.setAttribute('aria-pressed', String(isFavorite));
+  favButton.querySelector('span').textContent = isFavorite ? 'In your favourites' : 'Add to favourites';
+}
+
+export function isModalShowing(film) {
+  return dialog.open && currentFilm?.id === film.id;
 }
