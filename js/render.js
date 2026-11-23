@@ -45,7 +45,7 @@ function createCard(film, index, isFavorite) {
   return el('li', { className: 'card', 'data-id': film.id, style: `--i:${index}` },
     el('div', { className: 'card__media' },
       poster,
-      el('span', { className: 'card__score', 'aria-label': `Rotten Tomatoes score ${film.rt_score}%` },
+      el('span', { className: 'card__score', 'aria-label': `Score ${film.rt_score}%` },
         icon('star'), `${film.rt_score}%`),
     ),
     el('button', {
