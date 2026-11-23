@@ -1,53 +1,76 @@
-// Ao mudar qualquer arquivo da lista, incremente a versão para renovar o cache
-const CACHE_NAME = 'ghibli-cache-v3';
+// Estratégias de cache:
+//  - arquivos do site e API: rede primeiro (sempre a versão nova), cache se offline
+//  - pôsteres (TMDB) e fontes: cache primeiro, pois nunca mudam
+// Ao alterar a lista ASSETS, incremente a versão para renovar o cache.
+const CACHE_NAME = 'ghibli-explorer-v4';
 const ASSETS = [
-  './', './index.html', './manifest.json',
+  './',
+  './index.html',
+  './manifest.json',
   './css/style.css',
-  './js/app.js', './js/config.js', './js/filmService.js', './js/ui.js', './js/modal.js', './js/search.js',
-  './img/fallback.svg', './img/icon-192.png', './img/icon-512.png'
+  './js/app.js',
+  './js/api.js',
+  './js/config.js',
+  './js/favorites.js',
+  './js/filters.js',
+  './js/format.js',
+  './js/modal.js',
+  './js/render.js',
+  './img/fallback.svg',
+  './img/icon-192.png',
+  './img/icon-512.png',
 ];
 
+const CACHE_FIRST_HOSTS = ['image.tmdb.org', 'fonts.googleapis.com', 'fonts.gstatic.com'];
+
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim()),
   );
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  const url = new URL(event.request.url);
-
-  // API e arquivos do próprio site: rede primeiro (sempre a versão mais nova), cache só offline
-  if (url.hostname === 'ghibliapi.vercel.app' || url.origin === self.location.origin) {
-    event.respondWith(
-      fetch(event.request)
-        .then(res => {
-          if (res.ok) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
-          }
-          return res;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (error) {
+    const cached = await caches.match(request, { ignoreSearch: request.mode === 'navigate' });
+    if (cached) return cached;
+    throw error;
   }
+}
 
-  // CDNs (Bootstrap, ícones): cache primeiro
-  event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request).then(res => {
-      if (res.ok && url.hostname === 'cdn.jsdelivr.net') {
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
-      }
-      return res;
-    }))
-  );
+async function cacheFirst(request) {
+  const cached = await caches.match(request);
+  if (cached) return cached;
+  const response = await fetch(request);
+  // Respostas "opaque" (imagens sem CORS) têm status 0 mas podem ser guardadas
+  if (response.ok || response.type === 'opaque') {
+    const cache = await caches.open(CACHE_NAME);
+    cache.put(request, response.clone());
+  }
+  return response;
+}
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  if (CACHE_FIRST_HOSTS.includes(url.hostname)) {
+    event.respondWith(cacheFirst(request));
+  } else if (url.origin === self.location.origin || url.hostname === 'ghibliapi.vercel.app') {
+    event.respondWith(networkFirst(request));
+  }
 });
