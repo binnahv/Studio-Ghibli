@@ -1,0 +1,15 @@
+{
+  "name": "ghibli-explorer",
+  "version": "2.0.0",
+  "description": "Catálogo responsivo dos filmes do Studio Ghibli em HTML, CSS e JavaScript puro.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -l 5173 .",
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
