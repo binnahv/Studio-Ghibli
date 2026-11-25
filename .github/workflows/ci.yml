@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch: # permite rodar manualmente pela aba Actions
 
 permissions:
   contents: read
@@ -20,7 +21,7 @@ jobs:
 
   deploy:
     # Publica no GitHub Pages só depois dos testes passarem na main
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     needs: test
     runs-on: ubuntu-latest
     permissions:
@@ -35,7 +36,7 @@ jobs:
       - name: Monta a pasta do site
         run: mkdir _site && cp -r index.html manifest.json service-worker.js css js img _site/
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
       - id: deployment
