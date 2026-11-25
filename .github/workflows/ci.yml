@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read # o deploy-pages precisa ler o artefato enviado no passo anterior
       pages: write
       id-token: write
     environment:
