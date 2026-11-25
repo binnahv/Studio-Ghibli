@@ -19,19 +19,11 @@ jobs:
           node-version: 22
       - run: npm test
 
-  deploy:
-    # Publica no GitHub Pages só depois dos testes passarem na main
+  # Monta e envia o site; só roda fora de pull requests e depois dos testes
+  build:
     if: github.event_name != 'pull_request'
     needs: test
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read # o deploy-pages precisa ler o artefato enviado no passo anterior
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
       - name: Monta a pasta do site
@@ -40,5 +32,17 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+
+  # Publica no GitHub Pages o pacote enviado pelo job build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
